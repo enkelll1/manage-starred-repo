@@ -1,0 +1,52 @@
+
+version: '3.8'
+services:
+  mongo:
+    container_name: "mongodb"
+    image: mongo:4.4
+    hostname: mongodb
+    restart: always
+    volumes:
+      - ./data/mongodb/mongod.conf:/etc/mongod.conf
+      - ./data/mongodb/initdb.d/:/docker-entrypoint-initdb.d/
+      - ./data/mongodb/data/db/:/data/db/
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+      - MONGO_INITDB_DATABASE=development
+      - MONGO_INITDB_USER=mongodb
+      - MONGO_INITDB_PWD=mongodb
+    ports:
+      - 27017:27017
+    networks:
+      - shared-network
+    command: [ "-f", "/etc/mongod.conf" ]
+
+  api:
+    build: ./server-side
+    restart: unless-stopped
+    ports:
+      - "8081:8081"
+    environment:
+       GITHUB_CLIENT_ID: "e828a5838b33f9474bdd"
+       GITHUB_CLIENT_SECRET: "9cedd62df3736d258ad3d26af686cdb23cee902e"
+       MONGO_DB_URL: "mongodb+srv://enkel:enkel@cluster0.mt16u2u.mongodb.net/test"
+       JWT_SECRET = "dsadsa"
+       EXPIRES_IN = 30
+    networks:
+      - shared-network
+    depends_on:
+      - mongo
+
+  client:
+    build:
+      context: ./client-side
+    ports:
+      - "3000:3000"
+    networks:
+      - shared-network
+    depends_on:
+      - api
+
+networks:
+  shared-network:
