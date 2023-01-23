@@ -23,7 +23,7 @@ services:
     command: [ "-f", "/etc/mongod.conf" ]
 
   api:
-    build: ./server-side
+    build: ./server
     restart: unless-stopped
     ports:
       - "8081:8081"
@@ -40,7 +40,7 @@ services:
 
   client:
     build:
-      context: ./client-side
+      context: ./client
     ports:
       - "3000:3000"
     networks:
