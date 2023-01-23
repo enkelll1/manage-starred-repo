@@ -1,7 +1,7 @@
 # manage-starred-repo
 For starting :
 
-git clone https://github.com/AlisiaReveli/getRepos.git 
+git clone https://github.com/enkelll1/manage-starred-repo.git
 
 Make sure you have docker installed and type in the main directory the commands below:
 
