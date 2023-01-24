@@ -17,7 +17,7 @@ export const StarredList = () => {
             });
         }
         axios
-            .post(`http://localhost:81/github-actions/starred`,
+            .post(`http://localhost:8081/github-actions/starred`,
                 data,{headers:{'Authorization':`Bearer ${localStorage.getItem('token')}`}})
             .then((res) =>{
                 console.log(res);
@@ -37,7 +37,7 @@ export const StarredList = () => {
         if (token) {
             localStorage.setItem('token', token);
                      axios
-                        .get(`http://localhost:81/github-actions/starred`,
+                        .get(`http://localhost:8081/github-actions/starred`,
                             {headers:{'Authorization':`Bearer ${localStorage.getItem('token')}`}})
                         .then((res) =>{
                             setUser(res.data.user);
@@ -45,7 +45,7 @@ export const StarredList = () => {
                         }).catch((err)=>{console.log(err)});
         } else if(localStorage.getItem('token')) {
             axios
-                .get(`http://localhost:81/github-actions/starred`,
+                .get(`http://localhost:8081/github-actions/starred`,
                     {headers:{'Authorization':`Bearer ${localStorage.getItem('token')}`}})
                 .then((res) =>{
                     setUser(res.data.user);

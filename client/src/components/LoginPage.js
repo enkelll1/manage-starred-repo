@@ -1,5 +1,5 @@
 const GITHUB_CLIENT_ID = "e828a5838b33f9474bdd";
-const gitHubRedirectURL = "http://localhost:81/github-actions/auth";
+const gitHubRedirectURL = "http://localhost:8081/github-actions/auth";
 const path = "/";
 
 export const LoginPage = () => {
