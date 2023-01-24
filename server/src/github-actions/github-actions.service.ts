@@ -123,11 +123,9 @@ export class GithubActionsService {
         throw error;
       });
 
-    console.log(githubToken);
     const decoded = querystring.parse(githubToken);
 
     const accessToken = decoded.access_token;
-    console.log(accessToken);
 
     return await this.http
       .get('https://api.github.com/user', {
