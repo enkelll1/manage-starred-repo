@@ -74,7 +74,6 @@ export class GithubActionsService {
         Authorization: `Bearer ${githubActionDto.access_token_gh}`,
       });
     }
-    console.log(headersObj);
     const repos = await this.http
       .get(`https://api.github.com/users/${req.user.username_gh}/starred`, {
         headers: headersObj,
