@@ -32,7 +32,6 @@ services:
       - shared-network
     depends_on:
       - mongo
-
   client:
     build:
       context: ./client

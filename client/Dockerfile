@@ -18,5 +18,5 @@ RUN npm install -g serve
 COPY . .
 
 EXPOSE 3000
-RUN npm run build 
-CMD [ "serve", "build" , "-l" , "80"]
+RUN npm run build
+CMD [ "serve", "build" , "-l" , "3000"]
