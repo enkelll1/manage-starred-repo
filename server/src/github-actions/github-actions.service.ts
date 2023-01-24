@@ -26,7 +26,6 @@ export class GithubActionsService {
     }
 
     const githubUser = await this.getGitHubUser({ code });
-    console.log(githubUser);
     const user = await this.userModel.findOne({
       gh_username: githubUser.login,
     });
@@ -51,9 +50,6 @@ export class GithubActionsService {
     }
     res.set('x-token', token);
     res.redirect(`http://localhost:3000/repo?token=${token}`);
-    // res.json({
-    //     access_token: this.jwtService.sign(payload),
-    // })
   }
 
   async getStarred(req,res) {
@@ -85,11 +81,9 @@ export class GithubActionsService {
       })
       .toPromise()
       .then((res) => {
-        window.location.reload()
         return res.data;
       })
       .catch((err) => {
-        window.location.reload()
         throw new BadRequestException(err.message);
       });
     const savedStarredRepos = await this.starredModel
@@ -124,7 +118,6 @@ export class GithubActionsService {
       )
       .toPromise()
       .then((res) => {
-        console.log(res.data);
         return res.data;
       })
       .catch((error) => {
